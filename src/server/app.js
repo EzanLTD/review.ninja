@@ -34,18 +34,6 @@ app.use(require('cookie-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// custom middleware
-app.use('/api', require('./middleware/param'));
-app.use('/api', require('./middleware/authenticated'));
-app.use('/github/webhook', require('./middleware/param'));
-
-// papertrail middleware
-app.use('/api', require('./middleware/papertrail'));
-app.use('/github/webhook', require('./middleware/papertrail'));
-
-// keen middleware
-app.use('/api/github', require('./middleware/keen'));
-
 async.series([
 
     function(callback) {
@@ -258,43 +246,6 @@ async.series([
 
 ], function(err, res) {
     console.log('\n✓ '.bold.green + 'bootstrapped, '.bold + 'app listening on localhost:' + config.server.localport);
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Handle api calls
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-app.all('/api/:obj/:fun', function(req, res) {
-    res.set('Content-Type', 'application/json');
-    api[req.params.obj][req.params.fun](req, function(err, obj) {
-        if(err) {
-            return res.status(err.code > 0 ? err.code : 500).send(JSON.stringify(err.text || err));
-        }
-
-        var ret = obj ? JSON.stringify(obj) : null;
-
-        res.send(ret);
-    });
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Handle webhook calls
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-app.all('/github/webhook/:id', function(req, res) {
-    var event = req.headers['x-github-event'];
-    try {
-        if(!webhooks[event]) {
-            return res.status(400).send('Unsupported event');
-        }
-        webhooks[event](req, res);
-    } catch(err) {
-        res.status(500).send('Internal server error');
-    }
-
-    try {
-        socket.emit(event, req.args);
-    } catch(err) {}
 });
 
 module.exports = app;
