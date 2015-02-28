@@ -17,7 +17,7 @@ module.controller('PullCtrl', ['$scope', '$rootScope', '$state', '$stateParams',
         $scope.sha = null;
 
         // get the pull request
-        $scope.pull = Pull.render(pull.value) && Pull.stars(pull.value, true);
+        $scope.pull = Pull.milestone(pull.value) && Pull.render(pull.value) && Pull.stars(pull.value, true);
 
         // set the line selection
         $scope.reference = {selection: {}, issues: null};

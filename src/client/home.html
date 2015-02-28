@@ -41,8 +41,9 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right buttonstopbar" ng-show="user.loaded" style="font-size:12px;" ng-cloak>
-          <li><a target="_blank" href="http://docs.review.ninja">DOCUMENTATION</a></li>
           <li><a target="_blank" href="http://www.review.ninja">ABOUT</a></li>
+          <li><a target="_blank" href="http://docs.review.ninja">DOCUMENTATION</a></li>
+          <li ng-show="$config.terms"><a target="_blank" ng-href="{{ $config.terms }}">TERMS</a></li>
           <li><p class="navbar-text" style="margin-right: 0px;">Signed in as {{ user.value.login }}</p></li>
           <li tooltip="Sign out"
               tooltip-append-to-body="true"
@@ -94,6 +95,9 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
+  <script src="//www.google-analytics.com/analytics.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics-ga.min.js"></script>
   <script src="/lib/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
   <!-- APP -->

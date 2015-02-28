@@ -1,6 +1,16 @@
 .btn {
   
   &.btn-link {
+    @mixin graybutton($hovercolor) {
+      color: $gray;
+      padding: 0;
+
+      &:hover,
+      &.active {
+        color: $hovercolor;
+      }
+    }
+
     color: $brand-primary-muted;
 
     &:hover {
@@ -19,13 +29,11 @@
     }
 
     &.gray {
-      color: $gray;
-      padding: 0;
+      @include graybutton($gray-darker);
+    }
 
-      &:hover,
-      &.active {
-        color: $gray-darker;
-      }
+    &.inverse {
+      @include graybutton(#fff);
     }
   }
 

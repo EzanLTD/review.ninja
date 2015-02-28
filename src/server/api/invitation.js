@@ -19,11 +19,11 @@ module.exports = {
             token: req.user.token
         }, function(err, user) {
             if(err) {
-                return done('Invitation failed to send');
+                return done('Oops! Invitation failed to send.');
             }
 
             if(!user.email) {
-                return done('Invitation failed to send, ' + req.args.invitee + ' has no public email address');
+                return done('Oops! ' + req.args.invitee + ' has no public email address available, sorry we can\'t be of more help right now.');
             }
 
             mail.send({

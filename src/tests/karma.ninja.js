@@ -33,6 +33,9 @@ module.exports = function(config) {
             'http://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js',
             'http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js',
             'http://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js',
+            'http://www.google-analytics.com/analytics.js',
+            'http://cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics.min.js',
+            'http://cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics-ga.min.js',
             'src/bower/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
             'src/bower/angular-mocks/angular-mocks.js',
 
